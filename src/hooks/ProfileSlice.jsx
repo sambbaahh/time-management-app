@@ -13,7 +13,7 @@ export const profileSlice = createSlice({
     hideProfileRedux: (state) => {
       state.isVisibleProfile = false;
     },
-  }
+  },
 });
 
 export const {showProfileRedux, hideProfileRedux} = profileSlice.actions;

@@ -1,17 +1,17 @@
 import {useEffect, useReducer, useState} from "react";
-import {View, Keyboard, TouchableWithoutFeedback, Alert} from "react-native";
-import {TextInput, Button, Card, Chip, Avatar, Text, Divider} from "react-native-paper";
+import {Alert, Keyboard, TouchableWithoutFeedback, View} from "react-native";
+import {Avatar, Button, Card, Chip, Divider, Text, TextInput,} from "react-native-paper";
 import eventStyles from "../styles/Event";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import addEvent from "../services/firestore/AddEvent";
 import updateEvent from "../services/firestore/UpdateEvent";
-import {formatLocalDate, formatDayjsDate, addHoursToDate,} from "../utils/DateFormat";
+import {addHoursToDate, formatDayjsDate, formatLocalDate,} from "../utils/DateFormat";
 import {eventCategories} from "../constants/EventCategories";
 import {screenRoutes} from "../constants/Routes";
-import {eventValues, eventReducer} from "../hooks/EventReducer";
+import {eventReducer, eventValues} from "../hooks/EventReducer";
 import {useDispatch} from "react-redux";
-import {addEventRedux, deleteEventRedux, updateEventRedux} from "../hooks/EventsSlice";
+import {addEventRedux, deleteEventRedux, updateEventRedux,} from "../hooks/EventsSlice";
 import deleteEvent from "../services/firestore/DeleteEvent";
 
 export default function Event({navigation, route}) {
@@ -54,8 +54,8 @@ export default function Event({navigation, route}) {
         ...state,
         id: eventId,
         startDate: state.startDate.toISOString(true),
-        endDate: state.endDate.toISOString(true)
-      }
+        endDate: state.endDate.toISOString(true),
+      };
       reduxDispatch(addEventRedux(reduxSafeData));
 
       navigation.goBack();
@@ -71,9 +71,9 @@ export default function Event({navigation, route}) {
       const reduxSafeData = {
         ...state,
         startDate: state.startDate.toISOString(true),
-        endDate: state.endDate.toISOString(true)
-      }
-      reduxDispatch(updateEventRedux(reduxSafeData))
+        endDate: state.endDate.toISOString(true),
+      };
+      reduxDispatch(updateEventRedux(reduxSafeData));
 
       navigation.goBack();
     } catch (e) {
@@ -83,18 +83,18 @@ export default function Event({navigation, route}) {
 
   const showAlert = () =>
     Alert.alert(
-      'Delete event',
-      'Are you sure you want to delete this event?',
+      "Delete event",
+      "Are you sure you want to delete this event?",
       [
         {
-          text: 'Cancel',
-          style: 'cancel',
+          text: "Cancel",
+          style: "cancel",
         },
         {
-          text: 'Confirm',
+          text: "Confirm",
           onPress: () => handleDeleteEvent(),
-          style: 'default'
-        }
+          style: "default",
+        },
       ],
       {
         cancelable: true,
@@ -104,19 +104,28 @@ export default function Event({navigation, route}) {
   const handleDeleteEvent = async () => {
     try {
       await deleteEvent(state.id);
-      reduxDispatch(deleteEventRedux({id: state.id, startDate: state.startDate.toISOString(true)}))
+      reduxDispatch(
+        deleteEventRedux({
+          id: state.id,
+          startDate: state.startDate.toISOString(true),
+        }),
+      );
       navigation.goBack();
     } catch (e) {
       alert(e);
     }
-  }
+  };
 
   useEffect(() => {
     //If user wants to update event
     try {
       if (route.params) {
-        const startDate = formatDayjsDate(route.params.startDate ? route.params.startDate : route.params.start);
-        const endDate = formatDayjsDate(route.params.endDate ? route.params.endDate : route.params.end);
+        const startDate = formatDayjsDate(
+          route.params.startDate ? route.params.startDate : route.params.start,
+        );
+        const endDate = formatDayjsDate(
+          route.params.endDate ? route.params.endDate : route.params.end,
+        );
 
         const event = {
           ...route.params,
@@ -128,12 +137,16 @@ export default function Event({navigation, route}) {
     } catch (e) {
       alert(e);
     } finally {
-      setIsLoaded(true)
+      setIsLoaded(true);
     }
   }, []);
 
   useEffect(() => {
-    dispatch({type: "UPDATE_FIELD", field: "endDate", payload: addHoursToDate(state.startDate, 2)})
+    dispatch({
+      type: "UPDATE_FIELD",
+      field: "endDate",
+      payload: addHoursToDate(state.startDate, 2),
+    });
   }, [state.startDate]);
 
   if (isLoaded) {
@@ -143,14 +156,19 @@ export default function Event({navigation, route}) {
           <Card style={eventStyles.card}>
             <Card.Title
               title="Event Details"
-              left={(props) => <Avatar.Icon {...props} icon="form-select" />}/>
+              left={(props) => <Avatar.Icon {...props} icon="form-select"/>}
+            />
             <TextInput
               label="Title"
               style={eventStyles.textInput}
               mode="outlined"
               value={state.title}
               onChangeText={(text) =>
-                dispatch({type: "UPDATE_FIELD", field: "title", payload: text})
+                dispatch({
+                  type: "UPDATE_FIELD",
+                  field: "title",
+                  payload: text,
+                })
               }
             />
             <TextInput
@@ -212,14 +230,12 @@ export default function Event({navigation, route}) {
               minimumDate={state.startDate}
             />
             <Divider style={eventStyles.divider}></Divider>
-          <Text style={eventStyles.textField}> Category </Text>
+            <Text style={eventStyles.textField}> Category </Text>
             <View style={eventStyles.categoryBox}>
               {Object.keys(eventCategories).map((key) => (
                 <Chip
                   key={eventCategories[key]}
-                  selected={
-                    state.category === eventCategories[key]
-                  }
+                  selected={state.category === eventCategories[key]}
                   showSelectedOverlay={true}
                   style={eventStyles.chip}
                   onPress={() =>

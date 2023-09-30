@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
-import { getLocales } from "expo-localization";
+import {getLocales} from "expo-localization";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-dayjs.extend(localizedFormat);
-
 import locale_FI from "dayjs/locale/fi";
 import locale_EN from "dayjs/locale/en";
+
+dayjs.extend(localizedFormat);
 
 const LOCALE = getLocales()[0].languageCode;
 
@@ -18,11 +18,11 @@ locale();
 
 export const getStartOfTheDay = () => {
   return dayjs().startOf("day");
-}
+};
 
 export const addHoursToDate = (date, hours) => {
   return dayjs(date).add(hours, "hours").toDate();
-}
+};
 
 export const formatLocalDate = (date) => {
   return dayjs(date).format("L LT");
@@ -34,7 +34,7 @@ export const formatDayjsDate = (date) => {
 
 export const formatDateForCalendar = (date) => {
   return dayjs(date).format("YYYY-MM-DD");
-}
+};
 
 export const formatToDate = (date) => {
   if (dayjs(date).isSame(dayjs(), "day")) {

@@ -3,7 +3,7 @@ import {collection, getDocs, query, where} from "firebase/firestore";
 import getCurrentUser from "./CurrentUser";
 
 const getEvents = async () => {
-  console.log("nyt haetaan eventit")
+  console.log("nyt haetaan eventit");
   const uid = getCurrentUser().uid;
   const eventsCollection = collection(db, "events");
   const que = query(eventsCollection, where("creator", "==", uid));
@@ -17,7 +17,7 @@ const getEvents = async () => {
       ...event.data(),
       startDate,
       endDate,
-      id: event.id
+      id: event.id,
     };
   });
 };

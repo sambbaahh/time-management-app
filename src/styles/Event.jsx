@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from "react-native";
 
 const eventStyles = StyleSheet.create({
   container: {
@@ -10,23 +10,23 @@ const eventStyles = StyleSheet.create({
   card: {
     marginTop: "5%",
     marginBottom: "2.5%",
-    paddingHorizontal:"3%",
-    paddingVertical:"5%"
+    paddingHorizontal: "3%",
+    paddingVertical: "5%",
   },
   textInput: {
     marginVertical: 8,
   },
   textField: {
-    marginTop:8,
+    marginTop: 8,
     marginBottom: 12,
     fontSize: 17,
   },
-  divider:{
-    marginVertical:10,
+  divider: {
+    marginVertical: 10,
   },
   primaryButton: {
     marginTop: "4%",
-    marginHorizontal:"2.5%"
+    marginHorizontal: "2.5%",
   },
   datePickerBox: {
     flexDirection: "row",
@@ -38,7 +38,7 @@ const eventStyles = StyleSheet.create({
   },
   chip: {
     marginRight: 12,
-    marginBottom:12,
+    marginBottom: 12,
   },
 });
 

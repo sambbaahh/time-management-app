@@ -9,15 +9,17 @@ import {initializeEventsRedux} from "../hooks/EventsSlice";
 import eventListStyles from "../styles/EventList";
 import EventCard from "../components/EventCard";
 import {screenRoutes} from "../constants/Routes";
-import {formatDayjsDate, formatToDate, getStartOfTheDay} from "../utils/DateFormat";
+import {formatDayjsDate, formatToDate, getStartOfTheDay,} from "../utils/DateFormat";
 import ProfileDialog from "../components/ProfileDialog";
 import {LoadingEffect} from "../components/LoadingEffect";
 
 export default function EventList({navigation}) {
   const [isLoading, setIsLoading] = useState(false);
   const events = useSelector((state) => state.events.listValues);
-  const isInitialized = useSelector((state) => state.events.isInitialized)
-  const isVisibleProfile = useSelector((state) => state.profile.isVisibleProfile)
+  const isInitialized = useSelector((state) => state.events.isInitialized);
+  const isVisibleProfile = useSelector(
+    (state) => state.profile.isVisibleProfile,
+  );
 
   const dispatch = useDispatch();
 
@@ -31,11 +33,11 @@ export default function EventList({navigation}) {
         const result = await getEvents();
         dispatch(initializeEventsRedux(result));
       } catch (e) {
-        alert(e)
+        alert(e);
       } finally {
         setTimeout(() => {
           setIsLoading(false);
-        }, 750)
+        }, 750);
       }
     };
     if (!isInitialized) {
@@ -45,9 +47,7 @@ export default function EventList({navigation}) {
   }, []);
 
   if (isLoading) {
-    return (
-      <LoadingEffect/>
-    )
+    return <LoadingEffect/>;
   } else {
     return (
       <Portal.Host>
@@ -56,19 +56,27 @@ export default function EventList({navigation}) {
           <ScrollView contentContainerStyle={{flexGrow: 1}}>
             <View style={eventListStyles.container}>
               {events
-                .filter(event => formatDayjsDate(event.startDate) >= getStartOfTheDay())
+                .filter(
+                  (event) =>
+                    formatDayjsDate(event.startDate) >= getStartOfTheDay(),
+                )
                 .sort(
                   (a, b) =>
-                    formatDayjsDate(a.startDate) -
-                    formatDayjsDate(b.startDate)
+                    formatDayjsDate(a.startDate) - formatDayjsDate(b.startDate),
                 )
                 .map((event, index, array) => (
                   <View key={`view-${index}`}>
                     {(index === 0 ||
                       formatToDate(event.startDate) !==
                       formatToDate(array[index - 1].startDate)) && (
-                      <Text key={`date-${event.startDate.toString()}`}
-                            style={index !== 0 ? eventListStyles.textField : eventListStyles.firstTextField}>
+                      <Text
+                        key={`date-${event.startDate.toString()}`}
+                        style={
+                          index !== 0
+                            ? eventListStyles.textField
+                            : eventListStyles.firstTextField
+                        }
+                      >
                         {formatToDate(event.startDate)}
                       </Text>
                     )}

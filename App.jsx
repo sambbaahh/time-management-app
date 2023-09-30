@@ -1,12 +1,12 @@
-import {NavigationContainer} from "@react-navigation/native";
-import {PaperProvider} from "react-native-paper";
-import {Main} from "./src/Main";
-import {mainThemeColors} from "./src/components/Themes";
+import { NavigationContainer } from "@react-navigation/native";
+import { PaperProvider } from "react-native-paper";
+import { Main } from "./src/Main";
+import { mainThemeColors } from "./src/components/Themes";
 
 export default function App() {
   const theme = {
-    colors: mainThemeColors
-  }
+    colors: mainThemeColors,
+  };
 
   return (
     <PaperProvider theme={theme}>

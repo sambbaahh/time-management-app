@@ -1,7 +1,7 @@
-import { Avatar, Card } from "react-native-paper";
-import { formatLocalDate } from "../utils/DateFormat";
+import {Avatar, Card} from "react-native-paper";
+import {formatLocalDate} from "../utils/DateFormat";
 import eventListStyles from "../styles/EventList";
-import { eventCategories } from "../constants/EventCategories";
+import {eventCategories} from "../constants/EventCategories";
 
 export default function EventCard(props) {
   const getCardIcon = () => {
@@ -26,13 +26,9 @@ export default function EventCard(props) {
     >
       <Card.Title
         title={props.data.title}
-        subtitle={
-          "Ends: " +
-          formatLocalDate(props.data.endDate)
-        }
-        left={(props) => <Avatar.Icon {...props} icon={getCardIcon()} />}
+        subtitle={"Ends: " + formatLocalDate(props.data.endDate)}
+        left={(props) => <Avatar.Icon {...props} icon={getCardIcon()}/>}
       ></Card.Title>
     </Card>
   );
 }
-

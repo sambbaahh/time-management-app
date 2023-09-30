@@ -23,7 +23,10 @@ function MainScreens() {
         options={({route}) => ({
           headerTitle: getHeaderTitle(route),
           headerRight: () => (
-            <IconButton icon="account-circle" onPress={() => dispatch(showProfileRedux())}/>
+            <IconButton
+              icon="account-circle"
+              onPress={() => dispatch(showProfileRedux())}
+            />
           ),
           headerStyle: {
             backgroundColor: "white",
@@ -43,9 +46,8 @@ function MainScreens() {
         }}
       ></HomeStack.Screen>
       <HomeStack.Screen name="MyModal" component={ProfileDialog}/>
-
     </HomeStack.Navigator>
-  )
+  );
 }
 
 const HomeStack = createNativeStackNavigator();
@@ -54,7 +56,6 @@ const AuthStack = createNativeStackNavigator();
 export function Main() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const auth = getAuth();
@@ -67,40 +68,40 @@ export function Main() {
         }
         setLoading(false);
       }, 1000);
-    })
+    });
   }, []);
 
   if (!loading) {
     return (
       <>
-        {
-          isSignedIn ? (
-            <Provider store={store}>
-              <MainScreens/>
-            </Provider>
-          ) : (
-            <AuthStack.Navigator screenOptions={{
+        {isSignedIn ? (
+          <Provider store={store}>
+            <MainScreens/>
+          </Provider>
+        ) : (
+          <AuthStack.Navigator
+            screenOptions={{
               headerStyle: {
                 backgroundColor: "white",
               },
-            }}>
-              <AuthStack.Screen name={screenRoutes.SIGN_IN} component={SignIn}/>
-              <AuthStack.Screen name={screenRoutes.SIGN_UP} component={SignUp}/>
-            </AuthStack.Navigator>
-          )
-        }
+            }}
+          >
+            <AuthStack.Screen name={screenRoutes.SIGN_IN} component={SignIn}/>
+            <AuthStack.Screen name={screenRoutes.SIGN_UP} component={SignUp}/>
+          </AuthStack.Navigator>
+        )}
       </>
-    )
+    );
   }
 }
 
 const getHeaderTitle = (route) => {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? screenRoutes.EVENT_LIST;
+  const routeName =
+    getFocusedRouteNameFromRoute(route) ?? screenRoutes.EVENT_LIST;
   switch (routeName) {
     case screenRoutes.EVENT_LIST:
       return screenRoutes.EVENT_LIST;
     case screenRoutes.CALENDAR:
       return screenRoutes.CALENDAR;
   }
-}
-
+};

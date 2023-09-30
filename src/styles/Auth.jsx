@@ -1,28 +1,27 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from "react-native";
 
 const authStyles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
     alignItems: "stretch",
-    justifyContent:"center",
+    justifyContent: "center",
     paddingHorizontal: "5%",
-    height:"100%"
+    height: "100%",
   },
   textInput: {
     marginTop: 10,
   },
-  typography:{
-    paddingBottom:30,
+  typography: {
+    paddingBottom: 30,
     alignSelf: "center",
     fontSize: 22,
-    fontFamily: "Times New Roman"
+    fontFamily: "Times New Roman",
   },
   primaryButton: {
     marginTop: "4%",
-    marginHorizontal:"2.5%"
+    marginHorizontal: "2.5%",
   },
 });
-
 
 export default authStyles;

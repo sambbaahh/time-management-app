@@ -1,7 +1,6 @@
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import {addDoc, collection} from "firebase/firestore";
+import {db} from "../firebase";
 import getCurrentUser from "./CurrentUser";
-import { formatDayjsDate } from "../../utils/DateFormat";
 
 const addEvent = async (data) => {
   const uid = getCurrentUser().uid;
@@ -17,7 +16,7 @@ const addEvent = async (data) => {
     });
     return docRef.id;
   } catch (error) {
-    throw Error(error)
+    throw Error(error);
   }
 };
 

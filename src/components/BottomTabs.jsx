@@ -8,7 +8,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 export function BottomTabs() {
   return (
-    <Tab.Navigator barStyle={{height:85}}>
+    <Tab.Navigator barStyle={{height: 85}}>
       <Tab.Screen
         name={screenRoutes.EVENT_LIST}
         component={EventList}
