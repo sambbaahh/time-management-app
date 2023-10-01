@@ -6,8 +6,11 @@ import getCurrentUser from "../services/firestore/CurrentUser";
 import signOut from "../services/auth/SignOut";
 import {resetRedux} from "../hooks/EventsSlice";
 import {formatLocalDate} from "../utils/DateFormat";
+import {mainThemeColors} from "./Themes";
 
 export default function ProfileDialog() {
+  const colors = mainThemeColors;
+
   const isVisibleProfile = useSelector(
     (state) => state.profile.isVisibleProfile,
   );
@@ -54,7 +57,7 @@ export default function ProfileDialog() {
           </Button>
           <Button
             onPress={() => handleSignOut()}
-            buttonColor="pink"
+            buttonColor={colors.error}
             mode="contained"
           >
             Sign out

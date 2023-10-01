@@ -28,7 +28,7 @@ const eventListStyles = StyleSheet.create({
     marginBottom: 10,
   },
   primaryButton: {
-    marginTop: "4%",
+    marginTop: 12,
     marginHorizontal: "2.5%",
   },
   eventCard: {

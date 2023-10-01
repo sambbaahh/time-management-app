@@ -25,7 +25,7 @@ const eventStyles = StyleSheet.create({
     marginVertical: 10,
   },
   primaryButton: {
-    marginTop: "4%",
+    marginTop: 12,
     marginHorizontal: "2.5%",
   },
   datePickerBox: {

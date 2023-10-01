@@ -5,8 +5,10 @@ import {Avatar, Button, TextInput} from "react-native-paper";
 import createUserWithEmailPassword from "../services/auth/SignUp";
 import authStyles from "../styles/Auth";
 import {screenRoutes} from "../constants/Routes";
+import {mainThemeColors} from "../components/Themes";
 
 export default function TabOneScreen({navigation}) {
+  const colors = mainThemeColors;
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -78,7 +80,7 @@ export default function TabOneScreen({navigation}) {
             <Button
               onPress={() => navigation.navigate(screenRoutes.SIGN_IN)}
               mode="contained"
-              buttonColor="pink"
+              buttonColor={colors.secondary}
               style={authStyles.primaryButton}
             >
               Already Registered? Sign In

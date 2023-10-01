@@ -13,8 +13,10 @@ import {eventReducer, eventValues} from "../hooks/EventReducer";
 import {useDispatch} from "react-redux";
 import {addEventRedux, deleteEventRedux, updateEventRedux,} from "../hooks/EventsSlice";
 import deleteEvent from "../services/firestore/DeleteEvent";
+import {mainThemeColors} from "../components/Themes";
 
 export default function Event({navigation, route}) {
+  const colors = mainThemeColors;
   const [isLoaded, setIsLoaded] = useState(false);
   const [startDateVisibility, setStartDateVisibility] = useState(false);
   const [endDateVisibility, setEndDateVisibility] = useState(false);
@@ -268,7 +270,7 @@ export default function Event({navigation, route}) {
             <>
               <Button
                 mode="contained"
-                buttonColor="pink"
+                buttonColor={colors.error}
                 style={eventStyles.primaryButton}
                 onPress={() => showAlert()}
               >

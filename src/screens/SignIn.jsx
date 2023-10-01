@@ -5,8 +5,10 @@ import {Button, Text, TextInput} from "react-native-paper";
 import signInWithPassword from "../services/auth/SignIn";
 import authStyles from "../styles/Auth";
 import {screenRoutes} from "../constants/Routes";
+import {mainThemeColors} from "../components/Themes";
 
 export default function SignIn({navigation}) {
+  const colors = mainThemeColors;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -48,7 +50,7 @@ export default function SignIn({navigation}) {
           </Button>
           <Button
             onPress={() => navigation.navigate(screenRoutes.SIGN_UP)}
-            buttonColor={"pink"}
+            buttonColor={colors.secondary}
             mode="contained"
             style={authStyles.primaryButton}
           >

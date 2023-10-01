@@ -10,7 +10,7 @@ const authStyles = StyleSheet.create({
     height: "100%",
   },
   textInput: {
-    marginTop: 10,
+    marginVertical: 2.5
   },
   typography: {
     marginBottom: 20,
@@ -23,7 +23,7 @@ const authStyles = StyleSheet.create({
     marginBottom: 20,
   },
   primaryButton: {
-    marginTop: "4%",
+    marginTop: 12,
     marginHorizontal: "2.5%",
   },
 });
