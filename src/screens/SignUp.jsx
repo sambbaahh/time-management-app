@@ -34,7 +34,7 @@ export default function TabOneScreen({navigation}) {
           >
             <Avatar.Icon
               icon={"account"}
-              style={{alignSelf: "center"}}
+              style={authStyles.avatarIcon}
               size={80}
             />
             <TextInput

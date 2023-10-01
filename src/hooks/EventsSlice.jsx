@@ -142,7 +142,6 @@ export const eventsSlice = createSlice({
         }
         state.timelineValues[newDateKey].push(newTimelineEvent);
       }
-      console.log(state.markedDates);
     },
 
     deleteEventRedux: (state, action) => {

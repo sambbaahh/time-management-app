@@ -117,8 +117,12 @@ export default function Event({navigation, route}) {
   };
 
   useEffect(() => {
-    //If user wants to update event
+
     try {
+    //Update default values (start and endDates)
+    dispatch({type:"INITIAL_VALUES"});
+
+    //If user is in update event view
       if (route.params) {
         const startDate = formatDayjsDate(
           route.params.startDate ? route.params.startDate : route.params.start,
@@ -132,7 +136,7 @@ export default function Event({navigation, route}) {
           startDate: startDate,
           endDate: endDate,
         };
-        dispatch({type: "INITIAL_VALUES", payload: event});
+        dispatch({type: "EVENT_VALUES", payload: event});
       }
     } catch (e) {
       alert(e);

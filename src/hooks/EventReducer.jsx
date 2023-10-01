@@ -1,23 +1,31 @@
 import dayjs from "dayjs";
 import {eventCategories} from "../constants/EventCategories";
 
-export const eventValues = () => {
-  return {
+export const eventValues = {
     id: "",
     title: "",
     description: "",
-    startDate: dayjs().toDate(),
-    endDate: dayjs().add(2, "hour").toDate(),
+    startDate: null,
+    endDate: null,
     category: eventCategories.MEETING,
-  };
 };
 
 export function eventReducer(state, action) {
   switch (action.type) {
     case "UPDATE_FIELD":
       return {...state, [action.field]: action.payload};
-    case "INITIAL_VALUES":
+    case 'INITIAL_VALUES':
       return {
+        id: '',
+        title: '',
+        description: '',
+        startDate: dayjs().toDate(),
+        endDate: dayjs().add(2, 'hour').toDate(),
+        category: eventCategories.MEETING,
+      };
+    case "EVENT_VALUES":
+      return {
+        ...state,
         id: action.payload.id,
         title: action.payload.title,
         description: action.payload.description,
