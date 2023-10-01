@@ -1,13 +1,18 @@
-import {useState} from "react";
-import {Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, View,} from "react-native";
-import {Button, Text, TextInput} from "react-native-paper";
+import { useState } from "react";
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import { Button, Text, TextInput } from "react-native-paper";
 
 import signInWithPassword from "../services/auth/SignIn";
 import authStyles from "../styles/Auth";
-import {screenRoutes} from "../constants/Routes";
-import {mainThemeColors} from "../components/Themes";
+import { screenRoutes } from "../constants/Routes";
+import { mainThemeColors } from "../components/Themes";
 
-export default function SignIn({navigation}) {
+export default function SignIn({ navigation }) {
   const colors = mainThemeColors;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

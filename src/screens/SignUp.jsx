@@ -1,13 +1,19 @@
-import {useState} from "react";
-import {Keyboard, KeyboardAvoidingView, ScrollView, TouchableWithoutFeedback, View,} from "react-native";
-import {Avatar, Button, TextInput} from "react-native-paper";
+import { useState } from "react";
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  ScrollView,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import { Avatar, Button, TextInput } from "react-native-paper";
 
 import createUserWithEmailPassword from "../services/auth/SignUp";
 import authStyles from "../styles/Auth";
-import {screenRoutes} from "../constants/Routes";
-import {mainThemeColors} from "../components/Themes";
+import { screenRoutes } from "../constants/Routes";
+import { mainThemeColors } from "../components/Themes";
 
-export default function TabOneScreen({navigation}) {
+export default function TabOneScreen({ navigation }) {
   const colors = mainThemeColors;
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -32,7 +38,7 @@ export default function TabOneScreen({navigation}) {
       <View style={authStyles.container}>
         <KeyboardAvoidingView behavior="position">
           <ScrollView
-            contentContainerStyle={{flexGrow: 1, justifyContent: "center"}}
+            contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
           >
             <Avatar.Icon
               icon={"account"}

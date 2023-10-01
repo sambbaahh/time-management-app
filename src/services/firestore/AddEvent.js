@@ -1,5 +1,5 @@
-import {addDoc, collection} from "firebase/firestore";
-import {db} from "../firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 import getCurrentUser from "./CurrentUser";
 
 const addEvent = async (data) => {

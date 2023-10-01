@@ -1,12 +1,16 @@
-import {useSelector} from "react-redux";
-import {CalendarProvider, ExpandableCalendar, TimelineList,} from "react-native-calendars";
-import {Portal} from "react-native-paper";
+import { useSelector } from "react-redux";
+import {
+  CalendarProvider,
+  ExpandableCalendar,
+  TimelineList,
+} from "react-native-calendars";
+import { Portal } from "react-native-paper";
 
-import {screenRoutes} from "../constants/Routes";
-import {formatDateForCalendar} from "../utils/DateFormat";
+import { screenRoutes } from "../constants/Routes";
+import { formatDateForCalendar } from "../utils/DateFormat";
 import ProfileDialog from "../components/ProfileDialog";
 
-export default function Calendar({navigation}) {
+export default function Calendar({ navigation }) {
   const date = formatDateForCalendar(new Date());
   const markedDates = useSelector((state) => state.events.markedDates);
   const timelineValues = useSelector((state) => state.events.timelineValues);
@@ -42,7 +46,7 @@ export default function Calendar({navigation}) {
         />
       </CalendarProvider>
 
-      {isVisibleProfile && <ProfileDialog/>}
+      {isVisibleProfile && <ProfileDialog />}
     </Portal.Host>
   );
 }

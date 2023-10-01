@@ -1,19 +1,23 @@
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {ScrollView, Text, View} from "react-native";
-import {AnimatedFAB, Portal} from "react-native-paper";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ScrollView, Text, View } from "react-native";
+import { AnimatedFAB, Portal } from "react-native-paper";
 
 import getEvents from "../services/firestore/GetEvents";
-import {initializeEventsRedux} from "../hooks/EventsSlice";
+import { initializeEventsRedux } from "../hooks/EventsSlice";
 
 import eventListStyles from "../styles/EventList";
 import EventCard from "../components/EventCard";
-import {screenRoutes} from "../constants/Routes";
-import {formatDayjsDate, formatToDate, getStartOfTheDay,} from "../utils/DateFormat";
+import { screenRoutes } from "../constants/Routes";
+import {
+  formatDayjsDate,
+  formatToDate,
+  getStartOfTheDay,
+} from "../utils/DateFormat";
 import ProfileDialog from "../components/ProfileDialog";
-import {LoadingEffect} from "../components/LoadingEffect";
+import { LoadingEffect } from "../components/LoadingEffect";
 
-export default function EventList({navigation}) {
+export default function EventList({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
   const events = useSelector((state) => state.events.listValues);
   const isInitialized = useSelector((state) => state.events.isInitialized);
@@ -47,13 +51,13 @@ export default function EventList({navigation}) {
   }, []);
 
   if (isLoading) {
-    return <LoadingEffect/>;
+    return <LoadingEffect />;
   } else {
     return (
       <Portal.Host>
-        <View style={{height: "100%"}}>
-          {isVisibleProfile && <ProfileDialog/>}
-          <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <View style={{ height: "100%" }}>
+          {isVisibleProfile && <ProfileDialog />}
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <View style={eventListStyles.container}>
               {events
                 .filter(
@@ -68,7 +72,7 @@ export default function EventList({navigation}) {
                   <View key={`view-${index}`}>
                     {(index === 0 ||
                       formatToDate(event.startDate) !==
-                      formatToDate(array[index - 1].startDate)) && (
+                        formatToDate(array[index - 1].startDate)) && (
                       <Text
                         key={`date-${event.startDate.toString()}`}
                         style={

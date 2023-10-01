@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 
 const authStyles = StyleSheet.create({
   container: {
@@ -10,7 +10,7 @@ const authStyles = StyleSheet.create({
     height: "100%",
   },
   textInput: {
-    marginVertical: 2.5
+    marginVertical: 2.5,
   },
   typography: {
     marginBottom: 20,

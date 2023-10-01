@@ -1,17 +1,17 @@
-import {Provider, useDispatch} from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import store from "./hooks/ReduxStore";
-import {screenRoutes} from "./constants/Routes";
-import {BottomTabs} from "./components/BottomTabs";
+import { screenRoutes } from "./constants/Routes";
+import { BottomTabs } from "./components/BottomTabs";
 import Event from "./screens/Event";
 import ProfileDialog from "./components/ProfileDialog";
 import SignIn from "./screens/SignIn";
 import SignUp from "./screens/SignUp";
-import {useEffect, useState} from "react";
-import {getAuth, onAuthStateChanged} from "firebase/auth";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
-import {IconButton} from "react-native-paper";
-import {showProfileRedux} from "./hooks/ProfileSlice";
+import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { IconButton } from "react-native-paper";
+import { showProfileRedux } from "./hooks/ProfileSlice";
 
 function MainScreens() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function MainScreens() {
       <HomeStack.Screen
         name={screenRoutes.MAIN_TABS}
         component={BottomTabs}
-        options={({route}) => ({
+        options={({ route }) => ({
           headerTitle: getHeaderTitle(route),
           headerRight: () => (
             <IconButton
@@ -36,7 +36,7 @@ function MainScreens() {
       <HomeStack.Screen
         name={screenRoutes.ADD_EVENT}
         component={Event}
-        options={{headerTitle: "Add event"}}
+        options={{ headerTitle: "Add event" }}
       ></HomeStack.Screen>
       <HomeStack.Screen
         name={screenRoutes.UPDATE_EVENT}
@@ -45,7 +45,7 @@ function MainScreens() {
           headerTitle: "Update event",
         }}
       ></HomeStack.Screen>
-      <HomeStack.Screen name="MyModal" component={ProfileDialog}/>
+      <HomeStack.Screen name="MyModal" component={ProfileDialog} />
     </HomeStack.Navigator>
   );
 }
@@ -76,7 +76,7 @@ export function Main() {
       <>
         {isSignedIn ? (
           <Provider store={store}>
-            <MainScreens/>
+            <MainScreens />
           </Provider>
         ) : (
           <AuthStack.Navigator
@@ -86,8 +86,8 @@ export function Main() {
               },
             }}
           >
-            <AuthStack.Screen name={screenRoutes.SIGN_IN} component={SignIn}/>
-            <AuthStack.Screen name={screenRoutes.SIGN_UP} component={SignUp}/>
+            <AuthStack.Screen name={screenRoutes.SIGN_IN} component={SignIn} />
+            <AuthStack.Screen name={screenRoutes.SIGN_UP} component={SignUp} />
           </AuthStack.Navigator>
         )}
       </>

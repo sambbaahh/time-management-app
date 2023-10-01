@@ -1,21 +1,37 @@
-import {useEffect, useReducer, useState} from "react";
-import {Alert, Keyboard, TouchableWithoutFeedback, View} from "react-native";
-import {Avatar, Button, Card, Chip, Divider, Text, TextInput,} from "react-native-paper";
+import { useEffect, useReducer, useState } from "react";
+import { Alert, Keyboard, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Avatar,
+  Button,
+  Card,
+  Chip,
+  Divider,
+  Text,
+  TextInput,
+} from "react-native-paper";
 import eventStyles from "../styles/Event";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import addEvent from "../services/firestore/AddEvent";
 import updateEvent from "../services/firestore/UpdateEvent";
-import {addHoursToDate, formatDayjsDate, formatLocalDate,} from "../utils/DateFormat";
-import {eventCategories} from "../constants/EventCategories";
-import {screenRoutes} from "../constants/Routes";
-import {eventReducer, eventValues} from "../hooks/EventReducer";
-import {useDispatch} from "react-redux";
-import {addEventRedux, deleteEventRedux, updateEventRedux,} from "../hooks/EventsSlice";
+import {
+  addHoursToDate,
+  formatDayjsDate,
+  formatLocalDate,
+} from "../utils/DateFormat";
+import { eventCategories } from "../constants/EventCategories";
+import { screenRoutes } from "../constants/Routes";
+import { eventReducer, eventValues } from "../hooks/EventReducer";
+import { useDispatch } from "react-redux";
+import {
+  addEventRedux,
+  deleteEventRedux,
+  updateEventRedux,
+} from "../hooks/EventsSlice";
 import deleteEvent from "../services/firestore/DeleteEvent";
-import {mainThemeColors} from "../components/Themes";
+import { mainThemeColors } from "../components/Themes";
 
-export default function Event({navigation, route}) {
+export default function Event({ navigation, route }) {
   const colors = mainThemeColors;
   const [isLoaded, setIsLoaded] = useState(false);
   const [startDateVisibility, setStartDateVisibility] = useState(false);
@@ -40,10 +56,10 @@ export default function Event({navigation, route}) {
 
   const handleConfirm = (isStartDate, date) => {
     if (isStartDate) {
-      dispatch({type: "UPDATE_FIELD", field: "startDate", payload: date});
+      dispatch({ type: "UPDATE_FIELD", field: "startDate", payload: date });
       hideDatePicker(isStartDate);
     } else {
-      dispatch({type: "UPDATE_FIELD", field: "endDate", payload: date});
+      dispatch({ type: "UPDATE_FIELD", field: "endDate", payload: date });
       hideDatePicker(isStartDate);
     }
   };
@@ -119,12 +135,11 @@ export default function Event({navigation, route}) {
   };
 
   useEffect(() => {
-
     try {
-    //Update default values (start and endDates)
-    dispatch({type:"INITIAL_VALUES"});
+      //Update default values (start and endDates)
+      dispatch({ type: "INITIAL_VALUES" });
 
-    //If user is in update event view
+      //If user is in update event view
       if (route.params) {
         const startDate = formatDayjsDate(
           route.params.startDate ? route.params.startDate : route.params.start,
@@ -138,7 +153,7 @@ export default function Event({navigation, route}) {
           startDate: startDate,
           endDate: endDate,
         };
-        dispatch({type: "EVENT_VALUES", payload: event});
+        dispatch({ type: "EVENT_VALUES", payload: event });
       }
     } catch (e) {
       alert(e);
@@ -162,7 +177,7 @@ export default function Event({navigation, route}) {
           <Card style={eventStyles.card}>
             <Card.Title
               title="Event Details"
-              left={(props) => <Avatar.Icon {...props} icon="form-select"/>}
+              left={(props) => <Avatar.Icon {...props} icon="form-select" />}
             />
             <TextInput
               label="Title"

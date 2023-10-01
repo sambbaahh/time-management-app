@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import {getLocales} from "expo-localization";
+import { getLocales } from "expo-localization";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import locale_FI from "dayjs/locale/fi";
 import locale_EN from "dayjs/locale/en";

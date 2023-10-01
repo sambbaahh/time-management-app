@@ -1,5 +1,5 @@
-import {db} from "../firebase";
-import {collection, getDocs, query, where} from "firebase/firestore";
+import { db } from "../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import getCurrentUser from "./CurrentUser";
 
 const getEvents = async () => {

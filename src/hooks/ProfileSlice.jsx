@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 //Redux for showing profile dialog
 export const profileSlice = createSlice({
@@ -16,6 +16,6 @@ export const profileSlice = createSlice({
   },
 });
 
-export const {showProfileRedux, hideProfileRedux} = profileSlice.actions;
+export const { showProfileRedux, hideProfileRedux } = profileSlice.actions;
 
 export default profileSlice.reducer;

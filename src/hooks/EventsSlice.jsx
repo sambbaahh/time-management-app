@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode
 
-import {createSlice} from "@reduxjs/toolkit";
-import {formatDateForCalendar} from "../utils/DateFormat";
+import { createSlice } from "@reduxjs/toolkit";
+import { formatDateForCalendar } from "../utils/DateFormat";
 
 const initialState = {
   listValues: [],
@@ -18,7 +18,7 @@ export const eventsSlice = createSlice({
       state.listValues = action.payload;
 
       action.payload.forEach((event) => {
-        const {id, title, description, startDate, endDate, category} = event;
+        const { id, title, description, startDate, endDate, category } = event;
         const newTimelineEvent = {
           id,
           title,
@@ -30,7 +30,7 @@ export const eventsSlice = createSlice({
 
         const dateKey = formatDateForCalendar(startDate);
         if (!state.markedDates[dateKey]) {
-          state.markedDates[dateKey] = {marked: true, counter: 1};
+          state.markedDates[dateKey] = { marked: true, counter: 1 };
           state.timelineValues[dateKey] = [];
         } else {
           state.markedDates[dateKey] = {
@@ -45,7 +45,7 @@ export const eventsSlice = createSlice({
     },
 
     addEventRedux: (state, action) => {
-      const {id, title, description, category, startDate, endDate} =
+      const { id, title, description, category, startDate, endDate } =
         action.payload;
       const newListEvent = {
         id,
@@ -68,7 +68,7 @@ export const eventsSlice = createSlice({
       state.listValues.push(newListEvent);
 
       if (!state.markedDates[dateKey]) {
-        state.markedDates[dateKey] = {marked: true, counter: 1};
+        state.markedDates[dateKey] = { marked: true, counter: 1 };
         state.timelineValues[dateKey] = [];
       } else {
         state.markedDates[dateKey] = {
@@ -81,7 +81,7 @@ export const eventsSlice = createSlice({
     },
 
     updateEventRedux: (state, action) => {
-      const {id, title, description, startDate, endDate, category} =
+      const { id, title, description, startDate, endDate, category } =
         action.payload;
 
       const newListEvent = {
@@ -105,7 +105,7 @@ export const eventsSlice = createSlice({
       //update listValues (Events screen)
       state.listValues[
         state.listValues.findIndex((x) => x.id === newListEvent.id)
-        ] = newListEvent;
+      ] = newListEvent;
 
       //update timelineValues
       const oldEvent = Object.values(state.timelineValues)
@@ -119,7 +119,7 @@ export const eventsSlice = createSlice({
       if (oldDateKey === newDateKey) {
         state.timelineValues[newDateKey][oldEventIndex] = newTimelineEvent;
       }
-        //startDate is modified (dataKey)
+      //startDate is modified (dataKey)
       //update markedDates and timelineValues (Calendar screen)
       else {
         state.timelineValues[oldDateKey].splice(oldEventIndex, 1);
@@ -132,7 +132,7 @@ export const eventsSlice = createSlice({
         }
 
         if (!state.markedDates[newDateKey]) {
-          state.markedDates[newDateKey] = {marked: true, counter: 1};
+          state.markedDates[newDateKey] = { marked: true, counter: 1 };
           state.timelineValues[newDateKey] = [];
         } else {
           state.markedDates[newDateKey] = {
@@ -145,7 +145,7 @@ export const eventsSlice = createSlice({
     },
 
     deleteEventRedux: (state, action) => {
-      const {id, startDate} = action.payload;
+      const { id, startDate } = action.payload;
       const dateKey = formatDateForCalendar(startDate);
 
       state.listValues = state.listValues.filter((event) => event.id !== id);

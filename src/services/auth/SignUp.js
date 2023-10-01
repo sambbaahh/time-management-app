@@ -1,6 +1,10 @@
-import {createUserWithEmailAndPassword, sendEmailVerification, updateProfile,} from "firebase/auth";
-import {addDoc, collection} from "firebase/firestore";
-import {auth, db} from "../firebase";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 const createUserWithEmailPassword = async (email, password, name) => {
   try {
@@ -12,7 +16,7 @@ const createUserWithEmailPassword = async (email, password, name) => {
 
     await sendEmailVerification(auth.currentUser);
 
-    await updateProfile(auth.currentUser, {displayName: name});
+    await updateProfile(auth.currentUser, { displayName: name });
 
     await addDoc(collection(db, "users"), {
       uid: auth.currentUser.uid,
