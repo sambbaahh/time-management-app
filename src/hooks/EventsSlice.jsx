@@ -10,6 +10,8 @@ const initialState = {
   isInitialized: false,
 };
 
+//https://redux-toolkit.js.org/api/createSlice
+//Mutation is allowed inside the createSlice function
 export const eventsSlice = createSlice({
   name: "events",
   initialState: initialState,
@@ -49,9 +51,6 @@ export const eventsSlice = createSlice({
   },
 });
 
-export const {
-  setEventsRedux,
-  resetRedux,
-} = eventsSlice.actions;
+export const { setEventsRedux, resetRedux } = eventsSlice.actions;
 
 export default eventsSlice.reducer;

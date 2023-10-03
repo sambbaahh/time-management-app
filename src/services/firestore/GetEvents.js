@@ -1,7 +1,7 @@
 import { db } from "../firebase";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import getCurrentUser from "./CurrentUser";
-import {setEventsRedux} from "../../hooks/EventsSlice";
+import { setEventsRedux } from "../../hooks/EventsSlice";
 
 const getEventsWithListener = async (reduxDispatch) => {
   const uid = getCurrentUser().uid;
