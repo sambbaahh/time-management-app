@@ -4,7 +4,6 @@ import { ScrollView, Text, View } from "react-native";
 import { AnimatedFAB, Portal } from "react-native-paper";
 
 import getEvents from "../services/firestore/GetEvents";
-import { initializeEventsRedux } from "../hooks/EventsSlice";
 
 import eventListStyles from "../styles/EventList";
 import EventCard from "../components/EventCard";
@@ -25,7 +24,7 @@ export default function EventList({ navigation }) {
     (state) => state.profile.isVisibleProfile,
   );
 
-  const dispatch = useDispatch();
+  const reduxDispatch = useDispatch();
 
   const handleCardClick = (data) => {
     navigation.navigate(screenRoutes.UPDATE_EVENT, data);
@@ -34,8 +33,7 @@ export default function EventList({ navigation }) {
   useEffect(() => {
     const handleGetEvents = async () => {
       try {
-        const result = await getEvents();
-        dispatch(initializeEventsRedux(result));
+        await getEvents(reduxDispatch);
       } catch (e) {
         alert(e);
       } finally {

@@ -23,11 +23,6 @@ import { eventCategories } from "../constants/EventCategories";
 import { screenRoutes } from "../constants/Routes";
 import { eventReducer, eventValues } from "../hooks/EventReducer";
 import { useDispatch } from "react-redux";
-import {
-  addEventRedux,
-  deleteEventRedux,
-  updateEventRedux,
-} from "../hooks/EventsSlice";
 import deleteEvent from "../services/firestore/DeleteEvent";
 import { mainThemeColors } from "../components/Themes";
 
@@ -67,15 +62,6 @@ export default function Event({ navigation, route }) {
   const handleAddEvent = async () => {
     try {
       const eventId = await addEvent(state);
-
-      const reduxSafeData = {
-        ...state,
-        id: eventId,
-        startDate: state.startDate.toISOString(true),
-        endDate: state.endDate.toISOString(true),
-      };
-      reduxDispatch(addEventRedux(reduxSafeData));
-
       navigation.goBack();
     } catch (e) {
       alert(e);
@@ -85,14 +71,6 @@ export default function Event({ navigation, route }) {
   const handleUpdateEvent = async () => {
     try {
       await updateEvent(state);
-
-      const reduxSafeData = {
-        ...state,
-        startDate: state.startDate.toISOString(true),
-        endDate: state.endDate.toISOString(true),
-      };
-      reduxDispatch(updateEventRedux(reduxSafeData));
-
       navigation.goBack();
     } catch (e) {
       alert(e);
@@ -122,12 +100,6 @@ export default function Event({ navigation, route }) {
   const handleDeleteEvent = async () => {
     try {
       await deleteEvent(state.id);
-      reduxDispatch(
-        deleteEventRedux({
-          id: state.id,
-          startDate: state.startDate.toISOString(true),
-        }),
-      );
       navigation.goBack();
     } catch (e) {
       alert(e);
