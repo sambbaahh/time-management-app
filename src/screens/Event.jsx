@@ -16,8 +16,8 @@ import addEvent from "../services/firestore/AddEvent";
 import updateEvent from "../services/firestore/UpdateEvent";
 import {
   addHoursToDate,
-  formatDayjsDate,
   formatLocalDate,
+  formatToDate,
 } from "../utils/DateFormat";
 import { eventCategories } from "../constants/EventCategories";
 import { screenRoutes } from "../constants/Routes";
@@ -111,10 +111,10 @@ export default function Event({ navigation, route }) {
 
       //If user is in the update event view
       if (route.params) {
-        const startDate = formatDayjsDate(
+        const startDate = formatToDate(
           route.params.startDate ? route.params.startDate : route.params.start,
         );
-        const endDate = formatDayjsDate(
+        const endDate = formatToDate(
           route.params.endDate ? route.params.endDate : route.params.end,
         );
 
@@ -123,6 +123,8 @@ export default function Event({ navigation, route }) {
           startDate: startDate,
           endDate: endDate,
         };
+        console.log(event);
+
         dispatch({ type: "EVENT_VALUES", payload: event });
       }
     } catch (e) {
@@ -133,11 +135,13 @@ export default function Event({ navigation, route }) {
   }, []);
 
   useEffect(() => {
-    dispatch({
-      type: "UPDATE_FIELD",
-      field: "endDate",
-      payload: addHoursToDate(state.startDate, 2),
-    });
+    if (!route.params) {
+      dispatch({
+        type: "UPDATE_FIELD",
+        field: "endDate",
+        payload: addHoursToDate(state.startDate, 2),
+      });
+    }
   }, [state.startDate]);
 
   if (isLoaded) {

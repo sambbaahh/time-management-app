@@ -1,5 +1,5 @@
-import dayjs from "dayjs";
 import { eventCategories } from "../constants/EventCategories";
+import { addHoursToDate, formatToDate } from "../utils/DateFormat";
 
 export const eventValues = {
   id: "",
@@ -19,8 +19,8 @@ export function eventReducer(state, action) {
         id: "",
         title: "",
         description: "",
-        startDate: dayjs().toDate(),
-        endDate: dayjs().add(2, "hour").toDate(),
+        startDate: formatToDate(new Date()),
+        endDate: addHoursToDate(new Date(), 2),
         category: eventCategories.MEETING,
       };
     case "EVENT_VALUES":

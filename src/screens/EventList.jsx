@@ -9,9 +9,9 @@ import eventListStyles from "../styles/EventList";
 import EventCard from "../components/EventCard";
 import { screenRoutes } from "../constants/Routes";
 import {
-  formatDayjsDate,
   formatToDate,
-  getStartOfTheDay,
+  formatDateForEventList,
+  getStartOfThisDate,
 } from "../utils/DateFormat";
 import ProfileDialog from "../components/ProfileDialog";
 import { LoadingEffect } from "../components/LoadingEffect";
@@ -52,52 +52,51 @@ export default function EventList({ navigation }) {
     return <LoadingEffect />;
   } else {
     return (
-        <View style={{ height: "100%" }}>
-          {isVisibleProfile && <ProfileDialog />}
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-            <View style={eventListStyles.container}>
-              {events
-                .filter(
-                  (event) =>
-                    formatDayjsDate(event.startDate) >= getStartOfTheDay(),
-                )
-                .sort(
-                  (a, b) =>
-                    formatDayjsDate(a.startDate) - formatDayjsDate(b.startDate),
-                )
-                .map((event, index, array) => (
-                  <View key={`view-${index}`}>
-                    {(index === 0 ||
-                      formatToDate(event.startDate) !==
-                        formatToDate(array[index - 1].startDate)) && (
-                      <Text
-                        key={`date-${event.startDate.toString()}`}
-                        style={
-                          index !== 0
-                            ? eventListStyles.textField
-                            : eventListStyles.firstTextField
-                        }
-                      >
-                        {formatToDate(event.startDate)}
-                      </Text>
-                    )}
-                    <EventCard
-                      key={`event-${event.id}`}
-                      data={event}
-                      onCardClick={handleCardClick}
-                    ></EventCard>
-                  </View>
-                ))}
-            </View>
-          </ScrollView>
-          <AnimatedFAB
-            icon={"plus"}
-            style={eventListStyles.fabStyle}
-            onPress={() => navigation.navigate(screenRoutes.ADD_EVENT)}
-            label="New event"
-            extended={false}
-          ></AnimatedFAB>
-        </View>
+      <View style={{ height: "100%" }}>
+        {isVisibleProfile && <ProfileDialog />}
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View style={eventListStyles.container}>
+            {events
+              .filter(
+                (event) =>
+                  formatToDate(event.startDate) >= getStartOfThisDate(),
+              )
+              .sort(
+                (a, b) => formatToDate(a.startDate) - formatToDate(b.startDate),
+              )
+              .map((event, index, array) => (
+                <View key={`view-${index}`}>
+                  {(index === 0 ||
+                    formatDateForEventList(event.startDate) !==
+                      formatDateForEventList(array[index - 1].startDate)) && (
+                    <Text
+                      key={`date-${event.startDate.toString()}`}
+                      style={
+                        index !== 0
+                          ? eventListStyles.textField
+                          : eventListStyles.firstTextField
+                      }
+                    >
+                      {formatDateForEventList(event.startDate)}
+                    </Text>
+                  )}
+                  <EventCard
+                    key={`event-${event.id}`}
+                    data={event}
+                    onCardClick={handleCardClick}
+                  ></EventCard>
+                </View>
+              ))}
+          </View>
+        </ScrollView>
+        <AnimatedFAB
+          icon={"plus"}
+          style={eventListStyles.fabStyle}
+          onPress={() => navigation.navigate(screenRoutes.ADD_EVENT)}
+          label="New event"
+          extended={false}
+        ></AnimatedFAB>
+      </View>
     );
   }
 }

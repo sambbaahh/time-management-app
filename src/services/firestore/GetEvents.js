@@ -27,4 +27,4 @@ const getEventsWithListener = async (reduxDispatch) => {
   });
 };
 
-export { getEventsWithListener, unsubscribe};
+export { getEventsWithListener, unsubscribe };

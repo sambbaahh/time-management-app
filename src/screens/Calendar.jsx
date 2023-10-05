@@ -4,10 +4,10 @@ import {
   ExpandableCalendar,
   TimelineList,
 } from "react-native-calendars";
-import {Text} from "react-native-paper";
+import { Text } from "react-native-paper";
 
 import { screenRoutes } from "../constants/Routes";
-import {formatDateForCalendar, formatLocalDate} from "../utils/DateFormat";
+import { formatDateForCalendar, formatLocalDate } from "../utils/DateFormat";
 import ProfileDialog from "../components/ProfileDialog";
 
 export default function Calendar({ navigation }) {
@@ -26,36 +26,41 @@ export default function Calendar({ navigation }) {
   //Calendars performance is not the best:
   //https://github.com/wix/react-native-calendars/issues/1453
   return (
-      <CalendarProvider date={date}>
-        <ExpandableCalendar
-          firstDay={1}
-          markedDates={markedDates}
-          theme={{
-            arrowColor: "#0061A3",
-            selectedDayBackgroundColor: "#0061A3",
-            todayTextColor: "#0061A3",
-            dotColor: "#0061A3",
-          }}
-        />
-        <TimelineList
-          events={timelineValues}
-          timelineProps={{
-            onEventPress: (event) => {
-              handleEventClick(event);
-            },
-            format24h: true,
-            renderEvent: (event) => {
-              return (
-                <>
-                  <Text variant="titleMedium" style={{marginBottom:6}}> {event.title} </Text>
-                  <Text variant="bodySmall"> {"Ends: " + formatLocalDate(event.end)} </Text>
-                </>
-              );
-            }
-          }}
-        />
+    <CalendarProvider date={date}>
+      <ExpandableCalendar
+        firstDay={1}
+        markedDates={markedDates}
+        theme={{
+          arrowColor: "#0061A3",
+          selectedDayBackgroundColor: "#0061A3",
+          todayTextColor: "#0061A3",
+          dotColor: "#0061A3",
+        }}
+      />
+      <TimelineList
+        events={timelineValues}
+        timelineProps={{
+          onEventPress: (event) => {
+            handleEventClick(event);
+          },
+          format24h: true,
+          renderEvent: (event) => {
+            return (
+              <>
+                <Text variant="titleMedium" style={{ marginBottom: 6 }}>
+                  {" "}
+                  {event.title}{" "}
+                </Text>
+                <Text variant="bodySmall">
+                  {" "}
+                  {"Ends: " + formatLocalDate(event.wholeEventEnd)}{" "}
+                </Text>
+              </>
+            );
+          },
+        }}
+      />
       {isVisibleProfile && <ProfileDialog />}
-      </CalendarProvider>
-
+    </CalendarProvider>
   );
 }

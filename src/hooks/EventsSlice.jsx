@@ -1,7 +1,13 @@
 // noinspection DuplicatedCode
 
 import { createSlice } from "@reduxjs/toolkit";
-import { formatDateForCalendar } from "../utils/DateFormat";
+import {
+  checkIfSameDay,
+  formatDateForCalendar,
+  getAllDatesBetweenStartAndEnd,
+  getEndOfDate,
+  getStartOfDate,
+} from "../utils/DateFormat";
 
 const initialState = {
   listValues: [],
@@ -32,19 +38,54 @@ export const eventsSlice = createSlice({
           category,
           start: startDate,
           end: endDate,
+          wholeEventEnd: endDate, //If the event is longer one day, we need to store the real end date
         };
 
-        const dateKey = formatDateForCalendar(startDate);
-        if (!state.markedDates[dateKey]) {
-          state.markedDates[dateKey] = { marked: true, counter: 1 };
-          state.timelineValues[dateKey] = [];
+        if (!checkIfSameDay(startDate, endDate)) {
+          const allDates = getAllDatesBetweenStartAndEnd(startDate, endDate);
+          console.log(allDates);
+          for (const [i, date] of allDates.entries()) {
+            let start = null;
+            let end = null;
+            if (i === 0) {
+              start = startDate;
+              end = getEndOfDate(date).toISOString();
+            } else if (i === allDates.length - 1) {
+              start = getStartOfDate(date).toISOString();
+              end = endDate;
+            } else {
+              start = getStartOfDate(date).toISOString();
+              end = getEndOfDate(date).toISOString();
+            }
+            const dateKey = formatDateForCalendar(date);
+            if (!state.markedDates[dateKey]) {
+              state.markedDates[dateKey] = { marked: true, counter: 1 };
+              state.timelineValues[dateKey] = [];
+            } else {
+              state.markedDates[dateKey] = {
+                ...state.markedDates[dateKey],
+                counter: state.markedDates[dateKey].counter + 1,
+              };
+            }
+            state.timelineValues[dateKey].push({
+              ...newTimelineEvent,
+              start: start,
+              end: end,
+            });
+          }
         } else {
-          state.markedDates[dateKey] = {
-            ...state.markedDates[dateKey],
-            counter: state.markedDates[dateKey].counter + 1,
-          };
+          const dateKey = formatDateForCalendar(startDate);
+          if (!state.markedDates[dateKey]) {
+            state.markedDates[dateKey] = { marked: true, counter: 1 };
+            state.timelineValues[dateKey] = [];
+          } else {
+            state.markedDates[dateKey] = {
+              ...state.markedDates[dateKey],
+              counter: state.markedDates[dateKey].counter + 1,
+            };
+          }
+          state.timelineValues[dateKey].push(newTimelineEvent);
         }
-        state.timelineValues[dateKey].push(newTimelineEvent);
       });
 
       state.isInitialized = true;

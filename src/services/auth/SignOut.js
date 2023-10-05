@@ -2,7 +2,6 @@ import { getAuth, signOut } from "firebase/auth";
 import { unsubscribe } from "../firestore/GetEvents";
 
 const signOutFromApp = async () => {
-
   const auth = getAuth();
   try {
     unsubscribe();
