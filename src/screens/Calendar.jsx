@@ -24,7 +24,6 @@ export default function Calendar({ navigation }) {
   };
 
   return (
-    <Portal.Host>
       <CalendarProvider date={date}>
         <ExpandableCalendar
           firstDay={1}
@@ -44,9 +43,8 @@ export default function Calendar({ navigation }) {
             },
           }}
         />
+      {isVisibleProfile && <ProfileDialog />}
       </CalendarProvider>
 
-      {isVisibleProfile && <ProfileDialog />}
-    </Portal.Host>
   );
 }

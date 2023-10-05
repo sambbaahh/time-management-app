@@ -17,7 +17,11 @@ export const eventsSlice = createSlice({
   initialState: initialState,
   reducers: {
     setEventsRedux: (state, action) => {
+      //This reducer could be improved in the future
+      //There is no need to reset all states each time the firestore data is updated
       state.listValues = action.payload;
+      state.markedDates = {};
+      state.timelineValues = {};
 
       action.payload.forEach((event) => {
         const { id, title, description, startDate, endDate, category } = event;

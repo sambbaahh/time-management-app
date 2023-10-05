@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ScrollView, Text, View } from "react-native";
 import { AnimatedFAB, Portal } from "react-native-paper";
 
-import getEvents from "../services/firestore/GetEvents";
+import { getEventsWithListener } from "../services/firestore/GetEvents";
 
 import eventListStyles from "../styles/EventList";
 import EventCard from "../components/EventCard";
@@ -33,7 +33,7 @@ export default function EventList({ navigation }) {
   useEffect(() => {
     const handleGetEvents = async () => {
       try {
-        await getEvents(reduxDispatch);
+        await getEventsWithListener(reduxDispatch);
       } catch (e) {
         alert(e);
       } finally {
@@ -52,7 +52,6 @@ export default function EventList({ navigation }) {
     return <LoadingEffect />;
   } else {
     return (
-      <Portal.Host>
         <View style={{ height: "100%" }}>
           {isVisibleProfile && <ProfileDialog />}
           <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -99,7 +98,6 @@ export default function EventList({ navigation }) {
             extended={false}
           ></AnimatedFAB>
         </View>
-      </Portal.Host>
     );
   }
 }

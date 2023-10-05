@@ -3,13 +3,15 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import getCurrentUser from "./CurrentUser";
 import { setEventsRedux } from "../../hooks/EventsSlice";
 
+let unsubscribe;
+
 const getEventsWithListener = async (reduxDispatch) => {
   const uid = getCurrentUser().uid;
   const eventsCollection = collection(db, "events");
   const que = query(eventsCollection, where("creator", "==", uid));
 
   //Listens if data changes in the firestore database:
-  onSnapshot(que, (querySnapshot) => {
+  unsubscribe = onSnapshot(que, (querySnapshot) => {
     const events = querySnapshot.docs.map((event) => {
       const startDate = event.data().startDate.toDate().toISOString(true);
       const endDate = event.data().endDate.toDate().toISOString(true);
@@ -25,4 +27,4 @@ const getEventsWithListener = async (reduxDispatch) => {
   });
 };
 
-export default getEventsWithListener;
+export { getEventsWithListener, unsubscribe};
