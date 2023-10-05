@@ -1,4 +1,4 @@
-export const screenRoutes = {
+export const screenRoutes = Object.freeze({
   SIGN_IN: "Sign In",
   SIGN_UP: "Sign Up",
   MAIN_TABS: "Main Tabs",
@@ -6,4 +6,4 @@ export const screenRoutes = {
   CALENDAR: "Calendar",
   ADD_EVENT: "Add Event",
   UPDATE_EVENT: "Update Event",
-};
+});

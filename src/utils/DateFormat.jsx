@@ -1,20 +1,19 @@
 import dayjs from "dayjs";
-import { getLocales } from "expo-localization";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import { getLocales } from "expo-localization";
 import locale_FI from "dayjs/locale/fi";
-import locale_EN from "dayjs/locale/en";
+import locale_EN_GB from "dayjs/locale/en-gb";
 
 dayjs.extend(localizedFormat);
 
 const LOCALE = getLocales()[0].languageCode;
-
 function locale() {
   if (LOCALE === "fi") {
     dayjs.locale(locale_FI);
-  } else [dayjs.locale(locale_EN)];
+  } else [dayjs.locale(locale_EN_GB)];
 }
-
 locale();
+
 
 export const getStartOfTheDay = () => {
   return dayjs().startOf("day");

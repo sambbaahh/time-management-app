@@ -22,7 +22,6 @@ import {
 import { eventCategories } from "../constants/EventCategories";
 import { screenRoutes } from "../constants/Routes";
 import { eventReducer, eventValues } from "../hooks/EventReducer";
-import { useDispatch } from "react-redux";
 import deleteEvent from "../services/firestore/DeleteEvent";
 import { mainThemeColors } from "../components/Themes";
 
@@ -33,7 +32,6 @@ export default function Event({ navigation, route }) {
   const [endDateVisibility, setEndDateVisibility] = useState(false);
 
   const [state, dispatch] = useReducer(eventReducer, eventValues);
-  const reduxDispatch = useDispatch();
 
   const showDatePicker = (isStartDate) => {
     if (Keyboard.isVisible) Keyboard.dismiss();
@@ -61,7 +59,7 @@ export default function Event({ navigation, route }) {
 
   const handleAddEvent = async () => {
     try {
-      const eventId = await addEvent(state);
+      await addEvent(state);
       navigation.goBack();
     } catch (e) {
       alert(e);
@@ -111,7 +109,7 @@ export default function Event({ navigation, route }) {
       //Update default values (start and endDates)
       dispatch({ type: "INITIAL_VALUES" });
 
-      //If user is in update event view
+      //If user is in the update event view
       if (route.params) {
         const startDate = formatDayjsDate(
           route.params.startDate ? route.params.startDate : route.params.start,
