@@ -17,6 +17,7 @@ web-build/
 *.mobileprovision
 .env
 .vscode
+.idea
 
 # Metro
 .metro-health-check*
