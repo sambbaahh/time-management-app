@@ -76,9 +76,7 @@ export function Main() {
       <>
         {isSignedIn ? (
           <Provider store={store}>
-            <Portal.Host>
               <MainScreens />
-            </Portal.Host>
           </Provider>
         ) : (
           <AuthStack.Navigator
