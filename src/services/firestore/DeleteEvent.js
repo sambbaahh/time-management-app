@@ -6,7 +6,7 @@ const deleteEvent = async (id) => {
     const docRef = doc(db, "events", id);
     return await deleteDoc(docRef);
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 

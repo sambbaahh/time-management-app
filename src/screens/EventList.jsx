@@ -58,8 +58,7 @@ export default function EventList({ navigation }) {
           <View style={eventListStyles.container}>
             {events
               .filter(
-                (event) =>
-                  formatToDate(event.endDate) >= getStartOfThisDate(),
+                (event) => formatToDate(event.endDate) >= getStartOfThisDate(),
               )
               .sort(
                 (a, b) => formatToDate(a.startDate) - formatToDate(b.startDate),

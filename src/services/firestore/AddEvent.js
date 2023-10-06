@@ -16,7 +16,7 @@ const addEvent = async (data) => {
     });
     return docRef.id;
   } catch (error) {
-    throw Error(error);
+    throw error;
   }
 };
 

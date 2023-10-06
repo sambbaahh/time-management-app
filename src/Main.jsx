@@ -10,8 +10,9 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import {IconButton, Portal} from "react-native-paper";
+import { IconButton } from "react-native-paper";
 import { showProfileRedux } from "./hooks/ProfileSlice";
+import ForgotPassword from "./screens/ForgotPassword";
 
 function MainScreens() {
   const dispatch = useDispatch();
@@ -36,13 +37,21 @@ function MainScreens() {
       <HomeStack.Screen
         name={screenRoutes.ADD_EVENT}
         component={Event}
-        options={{ headerTitle: "Add event" }}
+        options={{
+          headerTitle: "Add event",
+          headerStyle: {
+            backgroundColor: "white",
+          },
+        }}
       ></HomeStack.Screen>
       <HomeStack.Screen
         name={screenRoutes.UPDATE_EVENT}
         component={Event}
         options={{
           headerTitle: "Update event",
+          headerStyle: {
+            backgroundColor: "white",
+          },
         }}
       ></HomeStack.Screen>
       <HomeStack.Screen name="MyModal" component={ProfileDialog} />
@@ -76,7 +85,7 @@ export function Main() {
       <>
         {isSignedIn ? (
           <Provider store={store}>
-              <MainScreens />
+            <MainScreens />
           </Provider>
         ) : (
           <AuthStack.Navigator
@@ -88,6 +97,10 @@ export function Main() {
           >
             <AuthStack.Screen name={screenRoutes.SIGN_IN} component={SignIn} />
             <AuthStack.Screen name={screenRoutes.SIGN_UP} component={SignUp} />
+            <AuthStack.Screen
+              name={screenRoutes.FORGOT_PASSWORD}
+              component={ForgotPassword}
+            />
           </AuthStack.Navigator>
         )}
       </>

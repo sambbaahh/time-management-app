@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { Avatar, Button, TextInput } from "react-native-paper";
+import { Avatar, Button, Divider, TextInput } from "react-native-paper";
 
 import createUserWithEmailPassword from "../services/auth/SignUp";
 import authStyles from "../styles/Auth";
@@ -83,6 +83,7 @@ export default function TabOneScreen({ navigation }) {
               {" "}
               Sign Up{" "}
             </Button>
+            <Divider style={authStyles.primaryButton} />
             <Button
               onPress={() => navigation.navigate(screenRoutes.SIGN_IN)}
               mode="contained"

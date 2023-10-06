@@ -14,7 +14,7 @@ const updateEvent = async (data) => {
     });
     return docRef;
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 

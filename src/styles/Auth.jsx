@@ -16,7 +16,10 @@ const authStyles = StyleSheet.create({
     marginBottom: 20,
     alignSelf: "center",
     fontSize: 22,
-    fontFamily: "Times New Roman",
+  },
+  description: {
+    marginBottom: 10,
+    fontSize: 15,
   },
   avatarIcon: {
     alignSelf: "center",

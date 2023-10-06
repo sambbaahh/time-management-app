@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { Button, Text, TextInput } from "react-native-paper";
+import { Avatar, Button, Divider, Text, TextInput } from "react-native-paper";
 
 import signInWithPassword from "../services/auth/SignIn";
 import authStyles from "../styles/Auth";
@@ -29,6 +29,7 @@ export default function SignIn({ navigation }) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={authStyles.container}>
         <KeyboardAvoidingView behavior="position">
+          <Avatar.Icon icon="login" style={authStyles.avatarIcon} />
           <Text style={authStyles.typography}> Time Management App</Text>
           <TextInput
             label="Email"
@@ -46,6 +47,12 @@ export default function SignIn({ navigation }) {
             style={authStyles.textInput}
           ></TextInput>
           <Button
+            style={{ marginLeft: "auto" }}
+            onPress={() => navigation.navigate(screenRoutes.FORGOT_PASSWORD)}
+          >
+            Forgot password?
+          </Button>
+          <Button
             onPress={() => handleSignIn()}
             mode="contained"
             style={authStyles.primaryButton}
@@ -53,6 +60,7 @@ export default function SignIn({ navigation }) {
             {" "}
             Sign In{" "}
           </Button>
+          <Divider style={authStyles.primaryButton} />
           <Button
             onPress={() => navigation.navigate(screenRoutes.SIGN_UP)}
             buttonColor={colors.secondary}
