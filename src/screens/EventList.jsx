@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ScrollView, Text, View } from "react-native";
-import { AnimatedFAB, Portal } from "react-native-paper";
+import { AnimatedFAB } from "react-native-paper";
 
 import { getEventsWithListener } from "../services/firestore/GetEvents";
 
@@ -59,7 +59,7 @@ export default function EventList({ navigation }) {
             {events
               .filter(
                 (event) =>
-                  formatToDate(event.startDate) >= getStartOfThisDate(),
+                  formatToDate(event.endDate) >= getStartOfThisDate(),
               )
               .sort(
                 (a, b) => formatToDate(a.startDate) - formatToDate(b.startDate),

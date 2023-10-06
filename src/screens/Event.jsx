@@ -123,7 +123,6 @@ export default function Event({ navigation, route }) {
           startDate: startDate,
           endDate: endDate,
         };
-        console.log(event);
 
         dispatch({ type: "EVENT_VALUES", payload: event });
       }

@@ -43,7 +43,6 @@ export const eventsSlice = createSlice({
 
         if (!checkIfSameDay(startDate, endDate)) {
           const allDates = getAllDatesBetweenStartAndEnd(startDate, endDate);
-          console.log(allDates);
           for (const [i, date] of allDates.entries()) {
             let start = null;
             let end = null;
@@ -90,7 +89,7 @@ export const eventsSlice = createSlice({
 
       state.isInitialized = true;
     },
-    resetRedux: (state) => {
+    resetRedux: () => {
       return initialState;
     },
   },
