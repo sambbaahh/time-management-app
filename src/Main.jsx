@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { IconButton } from "react-native-paper";
+import {IconButton, Portal} from "react-native-paper";
 import { showProfileRedux } from "./hooks/ProfileSlice";
 
 function MainScreens() {
@@ -76,7 +76,9 @@ export function Main() {
       <>
         {isSignedIn ? (
           <Provider store={store}>
-            <MainScreens />
+            <Portal.Host>
+              <MainScreens />
+            </Portal.Host>
           </Provider>
         ) : (
           <AuthStack.Navigator
