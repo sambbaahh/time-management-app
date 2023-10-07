@@ -63,11 +63,11 @@ https://github.com/sambbaahh/time-management-app/assets/99816212/d5d485e8-b94d-4
 
 ### Event management:
 
-https://github.com/sambbaahh/time-management-app/assets/99816212/6dc21f8d-1a98-4a7a-abc5-1d29234e7529
+https://github.com/sambbaahh/time-management-app/assets/99816212/5dfd10d9-93e4-41ca-8c68-f478f1c2d024
 
 ### Calendar view:
 
-https://github.com/sambbaahh/time-management-app/assets/99816212/779ab397-5291-4a18-b134-443f8c290275
+https://github.com/sambbaahh/time-management-app/assets/99816212/12583c36-da9d-45d3-987a-505b8f3d1cc7
 
 
 
