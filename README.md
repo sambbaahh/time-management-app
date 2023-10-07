@@ -24,7 +24,7 @@ Before you can get started, you should have [Node.js][Node-url] installed. You w
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repository
    ```sh
    git clone https://github.com/sambbaahh/time-management-app.git
    ```
@@ -57,7 +57,10 @@ Before you can get started, you should have [Node.js][Node-url] installed. You w
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Videos coming soon...
+### Authentication:
+
+https://github.com/sambbaahh/time-management-app/assets/99816212/716bbeed-af0e-4336-8e70-5bb8236d778d
+
 
 
 <!-- CONTRIBUTING -->
