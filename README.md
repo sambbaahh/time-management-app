@@ -54,12 +54,20 @@ Before you can get started, you should have [Node.js][Node-url] installed. You w
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
+<!-- EXAMPLES -->
+## Examples
 
 ### Authentication:
 
-https://github.com/sambbaahh/time-management-app/assets/99816212/716bbeed-af0e-4336-8e70-5bb8236d778d
+https://github.com/sambbaahh/time-management-app/assets/99816212/d5d485e8-b94d-4d26-abe6-353a7e918532
+
+### Event management:
+
+https://github.com/sambbaahh/time-management-app/assets/99816212/6dc21f8d-1a98-4a7a-abc5-1d29234e7529
+
+### Calendar view:
+
+https://github.com/sambbaahh/time-management-app/assets/99816212/779ab397-5291-4a18-b134-443f8c290275
 
 
 
