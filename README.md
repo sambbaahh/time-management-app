@@ -1,9 +1,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The Time Management App is a multiplatform mobile application developed as a personal project to learn and practice React Native programming and gain hands-on experience with Firebase and Firestore database services. This app serves as a practical exercise in building a real-world application, and it focuses on helping users manage their time effectively.
+The Time Management App is a cross-platform mobile application developed as a personal project to learn and practice React Native programming and gain hands-on experience with Firebase and Firestore database services. This app serves as a practical exercise in building a real-world application, and it focuses on helping users manage their time effectively.
 
-The time management app was primarily developed using the iOS simulator to ensure a seamless and visually appealing experience for iOS users. However, I understand the importance of inclusivity, so the app has also been extensively tested on Android devices to ensure cross-platform compatibility. 
+The time management app was primarily developed using the iOS Simulator to ensure a seamless and visually appealing experience for iOS users. However, understanding the importance of inclusivity, the app was also extensively tested on Android devices to ensure cross-platform compatibility.
 
 In this personal project of mine, it's important to acknowledge that there may be bugs and areas where improvements are needed. _In the world of programming, as in any creative endeavour, the pursuit of flawless perfection can be a highly demanding endeavour._
 
