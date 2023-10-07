@@ -38,7 +38,7 @@ function MainScreens() {
         name={screenRoutes.ADD_EVENT}
         component={Event}
         options={{
-          headerTitle: "Add event",
+          headerTitle: "Add Event",
           headerStyle: {
             backgroundColor: "white",
           },
@@ -48,7 +48,7 @@ function MainScreens() {
         name={screenRoutes.UPDATE_EVENT}
         component={Event}
         options={{
-          headerTitle: "Update event",
+          headerTitle: "Update Event",
           headerStyle: {
             backgroundColor: "white",
           },

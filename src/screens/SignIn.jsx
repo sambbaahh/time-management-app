@@ -50,7 +50,7 @@ export default function SignIn({ navigation }) {
             style={{ marginLeft: "auto" }}
             onPress={() => navigation.navigate(screenRoutes.FORGOT_PASSWORD)}
           >
-            Forgot password?
+            Forgot Password?
           </Button>
           <Button
             onPress={() => handleSignIn()}

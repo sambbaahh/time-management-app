@@ -60,7 +60,7 @@ export default function ProfileDialog() {
             buttonColor={colors.error}
             mode="contained"
           >
-            Sign out
+            Sign Out
           </Button>
         </Dialog.Actions>
       </Dialog>

@@ -68,7 +68,7 @@ export default function TabOneScreen({ navigation }) {
               style={authStyles.textInput}
             ></TextInput>
             <TextInput
-              label="Verify password"
+              label="Verify Password"
               value={verifyPassword}
               onChangeText={(text) => setVerifyPassword(text)}
               secureTextEntry

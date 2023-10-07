@@ -262,7 +262,7 @@ export default function Event({ navigation, route }) {
                 onPress={() => handleAddEvent()}
               >
                 {" "}
-                Add a new event{" "}
+                Add a New Event{" "}
               </Button>
             ) : (
               <>
