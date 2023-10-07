@@ -10,6 +10,7 @@ const authStyles = StyleSheet.create({
     height: "100%",
   },
   textInput: {
+    marginTop: 5,
     marginVertical: 2.5,
   },
   typography: {

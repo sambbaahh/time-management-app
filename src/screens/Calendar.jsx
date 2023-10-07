@@ -36,10 +36,13 @@ export default function Calendar({ navigation }) {
           selectedDayBackgroundColor: "#0061A3",
           todayTextColor: "#00a390",
           dotColor: "#0061A3",
+          indicatorColor: "#0061A3",
         }}
       />
       <TimelineList
         events={timelineValues}
+        scrollToFirst
+        showNowIndicator
         timelineProps={{
           onEventPress: (event) => {
             handleEventClick(event);

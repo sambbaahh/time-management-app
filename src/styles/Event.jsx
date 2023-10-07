@@ -14,6 +14,7 @@ const eventStyles = StyleSheet.create({
     paddingVertical: "5%",
   },
   textInput: {
+    marginTop: 5,
     marginVertical: 8,
   },
   textField: {

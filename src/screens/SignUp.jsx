@@ -46,16 +46,16 @@ export default function TabOneScreen({ navigation }) {
               size={80}
             />
             <TextInput
-              label="Email"
-              value={email}
-              onChangeText={(text) => setEmail(text)}
+              label="Name"
+              value={name}
+              onChangeText={(text) => setName(text)}
               mode="outlined"
               style={authStyles.textInput}
             ></TextInput>
             <TextInput
-              label="Name"
-              value={name}
-              onChangeText={(text) => setName(text)}
+              label="Email"
+              value={email}
+              onChangeText={(text) => setEmail(text)}
               mode="outlined"
               style={authStyles.textInput}
             ></TextInput>

@@ -1,5 +1,9 @@
 import { Avatar, Card } from "react-native-paper";
-import {checkIfSameDay, formatLocalDate, formatLocalTime} from "../utils/DateFormat";
+import {
+  checkIfSameDay,
+  formatLocalDate,
+  formatLocalTime,
+} from "../utils/DateFormat";
 import eventListStyles from "../styles/EventList";
 import { eventCategories } from "../constants/EventCategories";
 
