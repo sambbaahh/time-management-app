@@ -6,7 +6,7 @@ const eventStyles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "stretch",
     paddingHorizontal: "5%",
-    marginBottom:"5%"
+    marginBottom: "5%",
   },
   card: {
     marginTop: "5%",
