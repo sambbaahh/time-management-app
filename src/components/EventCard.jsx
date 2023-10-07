@@ -1,5 +1,5 @@
 import { Avatar, Card } from "react-native-paper";
-import { formatLocalDate } from "../utils/DateFormat";
+import {checkIfSameDay, formatLocalDate, formatLocalTime} from "../utils/DateFormat";
 import eventListStyles from "../styles/EventList";
 import { eventCategories } from "../constants/EventCategories";
 
@@ -26,7 +26,13 @@ export default function EventCard(props) {
     >
       <Card.Title
         title={props.data.title}
-        subtitle={"Ends: " + formatLocalDate(props.data.endDate)}
+        subtitle={
+          formatLocalTime(props.data.startDate) +
+          " - " +
+          (checkIfSameDay(props.data.startDate, props.data.endDate)
+            ? formatLocalTime(props.data.endDate)
+            : formatLocalDate(props.data.endDate))
+        }
         left={(props) => <Avatar.Icon {...props} icon={getCardIcon()} />}
       ></Card.Title>
     </Card>

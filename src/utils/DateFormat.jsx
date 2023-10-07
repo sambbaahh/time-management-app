@@ -38,6 +38,15 @@ export const checkIfSameDay = (startDate, endDate) => {
   return dayjs(startDate).isSame(dayjs(endDate), "day");
 };
 
+export const checkDates = (startDate, endDate) => {
+  const formattedStartDate = formatToDate(startDate);
+  const formattedEndDate = formatToDate(endDate);
+
+  if (formattedStartDate > formattedEndDate) {
+    throw Error("Start time must be greater than end time");
+  }
+};
+
 export const getAllDatesBetweenStartAndEnd = (startDate, endDate) => {
   const dates = [];
   let current = dayjs(startDate).format("YYYY-MM-DD");
@@ -51,6 +60,10 @@ export const getAllDatesBetweenStartAndEnd = (startDate, endDate) => {
 
 export const formatLocalDate = (date) => {
   return dayjs(date).format("L LT");
+};
+
+export const formatLocalTime = (date) => {
+  return dayjs(date).format("LT");
 };
 
 export const formatToDate = (date) => {

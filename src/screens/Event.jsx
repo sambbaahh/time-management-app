@@ -1,5 +1,11 @@
 import { useEffect, useReducer, useState } from "react";
-import { Alert, Keyboard, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Alert,
+  Keyboard,
+  ScrollView,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import {
   Avatar,
   Button,
@@ -24,6 +30,7 @@ import { screenRoutes } from "../constants/Routes";
 import { eventReducer, eventValues } from "../hooks/EventReducer";
 import deleteEvent from "../services/firestore/DeleteEvent";
 import { mainThemeColors } from "../components/Themes";
+import { checkDates } from "../utils/DateFormat";
 
 export default function Event({ navigation, route }) {
   const colors = mainThemeColors;
@@ -59,6 +66,7 @@ export default function Event({ navigation, route }) {
 
   const handleAddEvent = async () => {
     try {
+      checkDates(state.startDate, state.endDate);
       await addEvent(state);
       navigation.goBack();
     } catch (e) {
@@ -68,6 +76,7 @@ export default function Event({ navigation, route }) {
 
   const handleUpdateEvent = async () => {
     try {
+      checkDates(state.startDate, state.endDate);
       await updateEvent(state);
       navigation.goBack();
     } catch (e) {
@@ -146,135 +155,137 @@ export default function Event({ navigation, route }) {
   if (isLoaded) {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={eventStyles.container}>
-          <Card style={eventStyles.card}>
-            <Card.Title
-              title="Event Details"
-              left={(props) => <Avatar.Icon {...props} icon="form-select" />}
-            />
-            <TextInput
-              label="Title"
-              style={eventStyles.textInput}
-              mode="outlined"
-              value={state.title}
-              onChangeText={(text) =>
-                dispatch({
-                  type: "UPDATE_FIELD",
-                  field: "title",
-                  payload: text,
-                })
-              }
-            />
-            <TextInput
-              label="Description"
-              style={eventStyles.textInput}
-              mode="outlined"
-              multiline
-              line
-              value={state.description}
-              onChangeText={(text) =>
-                dispatch({
-                  type: "UPDATE_FIELD",
-                  field: "description",
-                  payload: text,
-                })
-              }
-            />
-            <TextInput
-              value={formatLocalDate(state.startDate)}
-              showSoftInputOnFocus={false}
-              style={eventStyles.textInput}
-              label="Start Time"
-              onFocus={() => showDatePicker(true)}
-              mode="outlined"
-              right={
-                <TextInput.Icon
-                  icon="calendar"
-                  onPress={() => showDatePicker(true)}
-                />
-              }
-            />
-            <DateTimePickerModal
-              date={state.startDate}
-              isVisible={startDateVisibility}
-              mode="datetime"
-              onConfirm={(date) => handleConfirm(true, date)}
-              onCancel={() => hideDatePicker(true)}
-            />
-            <TextInput
-              showSoftInputOnFocus={false}
-              style={eventStyles.textInput}
-              label="End Time"
-              value={formatLocalDate(state.endDate)}
-              onFocus={() => showDatePicker(false)}
-              mode="outlined"
-              right={
-                <TextInput.Icon
-                  icon="calendar"
-                  onPress={() => showDatePicker(false)}
-                />
-              }
-            />
-            <DateTimePickerModal
-              date={state.endDate}
-              isVisible={endDateVisibility}
-              mode="datetime"
-              onConfirm={(date) => handleConfirm(false, date)}
-              onCancel={() => hideDatePicker(false)}
-              minimumDate={state.startDate}
-            />
-            <Divider style={eventStyles.divider}></Divider>
-            <Text style={eventStyles.textField}> Category </Text>
-            <View style={eventStyles.categoryBox}>
-              {Object.keys(eventCategories).map((key) => (
-                <Chip
-                  key={eventCategories[key]}
-                  selected={state.category === eventCategories[key]}
-                  showSelectedOverlay={true}
-                  style={eventStyles.chip}
-                  onPress={() =>
-                    dispatch({
-                      type: "UPDATE_FIELD",
-                      field: "category",
-                      payload: eventCategories[key],
-                    })
-                  }
-                >
-                  {eventCategories[key]}
-                </Chip>
-              ))}
-            </View>
-          </Card>
-          {route.name === screenRoutes.ADD_EVENT ? (
-            <Button
-              mode="contained"
-              style={eventStyles.primaryButton}
-              onPress={() => handleAddEvent()}
-            >
-              {" "}
-              Add a new event{" "}
-            </Button>
-          ) : (
-            <>
-              <Button
-                mode="contained"
-                buttonColor={colors.error}
-                style={eventStyles.primaryButton}
-                onPress={() => showAlert()}
-              >
-                Delete event
-              </Button>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View style={eventStyles.container}>
+            <Card style={eventStyles.card}>
+              <Card.Title
+                title="Event Details"
+                left={(props) => <Avatar.Icon {...props} icon="form-select" />}
+              />
+              <TextInput
+                label="Title"
+                style={eventStyles.textInput}
+                mode="outlined"
+                value={state.title}
+                onChangeText={(text) =>
+                  dispatch({
+                    type: "UPDATE_FIELD",
+                    field: "title",
+                    payload: text,
+                  })
+                }
+              />
+              <TextInput
+                label="Description"
+                style={eventStyles.textInput}
+                mode="outlined"
+                multiline
+                line
+                value={state.description}
+                onChangeText={(text) =>
+                  dispatch({
+                    type: "UPDATE_FIELD",
+                    field: "description",
+                    payload: text,
+                  })
+                }
+              />
+              <TextInput
+                value={formatLocalDate(state.startDate)}
+                showSoftInputOnFocus={false}
+                style={eventStyles.textInput}
+                label="Start Time"
+                onFocus={() => showDatePicker(true)}
+                mode="outlined"
+                right={
+                  <TextInput.Icon
+                    icon="calendar"
+                    onPress={() => showDatePicker(true)}
+                  />
+                }
+              />
+              <DateTimePickerModal
+                date={state.startDate}
+                isVisible={startDateVisibility}
+                mode="datetime"
+                onConfirm={(date) => handleConfirm(true, date)}
+                onCancel={() => hideDatePicker(true)}
+              />
+              <TextInput
+                showSoftInputOnFocus={false}
+                style={eventStyles.textInput}
+                label="End Time"
+                value={formatLocalDate(state.endDate)}
+                onFocus={() => showDatePicker(false)}
+                mode="outlined"
+                right={
+                  <TextInput.Icon
+                    icon="calendar"
+                    onPress={() => showDatePicker(false)}
+                  />
+                }
+              />
+              <DateTimePickerModal
+                date={state.endDate}
+                isVisible={endDateVisibility}
+                mode="datetime"
+                onConfirm={(date) => handleConfirm(false, date)}
+                onCancel={() => hideDatePicker(false)}
+                minimumDate={state.startDate}
+              />
+              <Divider style={eventStyles.divider}></Divider>
+              <Text style={eventStyles.textField}> Category </Text>
+              <View style={eventStyles.categoryBox}>
+                {Object.keys(eventCategories).map((key) => (
+                  <Chip
+                    key={eventCategories[key]}
+                    selected={state.category === eventCategories[key]}
+                    showSelectedOverlay={true}
+                    style={eventStyles.chip}
+                    onPress={() =>
+                      dispatch({
+                        type: "UPDATE_FIELD",
+                        field: "category",
+                        payload: eventCategories[key],
+                      })
+                    }
+                  >
+                    {eventCategories[key]}
+                  </Chip>
+                ))}
+              </View>
+            </Card>
+            {route.name === screenRoutes.ADD_EVENT ? (
               <Button
                 mode="contained"
                 style={eventStyles.primaryButton}
-                onPress={() => handleUpdateEvent()}
+                onPress={() => handleAddEvent()}
               >
                 {" "}
-                Update event{" "}
+                Add a new event{" "}
               </Button>
-            </>
-          )}
-        </View>
+            ) : (
+              <>
+                <Button
+                  mode="contained"
+                  buttonColor={colors.error}
+                  style={eventStyles.primaryButton}
+                  onPress={() => showAlert()}
+                >
+                  Delete event
+                </Button>
+                <Button
+                  mode="contained"
+                  style={eventStyles.primaryButton}
+                  onPress={() => handleUpdateEvent()}
+                >
+                  {" "}
+                  Update event{" "}
+                </Button>
+              </>
+            )}
+          </View>
+        </ScrollView>
       </TouchableWithoutFeedback>
     );
   }

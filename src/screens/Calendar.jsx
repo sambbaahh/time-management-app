@@ -27,13 +27,14 @@ export default function Calendar({ navigation }) {
   //https://github.com/wix/react-native-calendars/issues/1453
   return (
     <CalendarProvider date={date}>
+      {isVisibleProfile && <ProfileDialog />}
       <ExpandableCalendar
         firstDay={1}
         markedDates={markedDates}
         theme={{
           arrowColor: "#0061A3",
           selectedDayBackgroundColor: "#0061A3",
-          todayTextColor: "#0061A3",
+          todayTextColor: "#00a390",
           dotColor: "#0061A3",
         }}
       />
@@ -60,7 +61,6 @@ export default function Calendar({ navigation }) {
           },
         }}
       />
-      {isVisibleProfile && <ProfileDialog />}
     </CalendarProvider>
   );
 }
